@@ -32,7 +32,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-muted-foreground hover:text-primary transition-colors font-medium"
+                className="text-muted-foreground hover:text-primary hover:scale-110 transition-all font-medium"
               >
                 {link.label}
               </Link>
@@ -41,14 +41,14 @@ export function Header() {
 
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="tel:+573001234567"
+              href="tel:+573137192308"
               className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
             >
-              <Phone className="w-4 h-4" />
-              <span className="font-medium">+57 300 123 4567</span>
+              <Phone className="w-4 h-4 hover:scale-110 transition-transform" />
+
             </a>
             <Button asChild className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
-              <a href="https://wa.me/573001234567" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/573137192308" target="_blank" rel="noopener noreferrer">
                 Cotiza por WhatsApp
               </a>
             </Button>
@@ -77,7 +77,7 @@ export function Header() {
                 </Link>
               ))}
               <Button asChild className="bg-secondary hover:bg-secondary/90 text-secondary-foreground w-full mt-4">
-                <a href="https://wa.me/573001234567" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/573137192308" target="_blank" rel="noopener noreferrer">
                   Cotiza por WhatsApp
                 </a>
               </Button>
