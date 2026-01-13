@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/casa_korea/components/ui/button"
 import { MessageCircle } from "lucide-react"
 
 const products = [
