@@ -1,7 +1,7 @@
 "use client"
 
 import { Search } from "lucide-react"
-import { Input } from "@/casa_korea/components/ui/input"
+import { Input } from "@/components/ui/input"
 
 interface CatalogHeaderProps {
   totalProducts: number

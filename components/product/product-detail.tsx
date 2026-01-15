@@ -85,11 +85,12 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <div className="flex gap-3 overflow-x-auto pb-2">
               {images.map((img, index) => (
                 <button
+                  type="button"
+                  title={`Vista ${index + 1}`}
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`relative w-20 h-20 rounded-md overflow-hidden border-2 transition-colors flex-shrink-0 ${
-                    selectedImage === index ? "border-primary" : "border-border hover:border-muted-foreground"
-                  }`}
+                  className={`relative w-20 h-20 rounded-md overflow-hidden border-2 transition-colors flex-shrink-0 ${selectedImage === index ? "border-primary" : "border-border hover:border-muted-foreground"
+                    }`}
                 >
                   <Image
                     src={img || "/placeholder.svg"}

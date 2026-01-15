@@ -4,7 +4,7 @@ import { useState, useMemo } from "react"
 import { CatalogFilters } from "./catalog-filters"
 import { ProductCard } from "./product-card"
 import { CatalogHeader } from "./catalog-header"
-import { products, categories, brands } from "@/casa_korea/lib/catalog-data"
+import { products, categories, brands } from "@/lib/catalog-data"
 
 export function CatalogContent() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all")

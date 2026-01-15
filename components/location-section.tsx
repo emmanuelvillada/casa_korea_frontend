@@ -1,5 +1,5 @@
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react"
-import { Button } from "@/casa_korea/components/ui/button"
+import { Button } from "@/components/ui/button"
 
 export function LocationSection() {
   return (

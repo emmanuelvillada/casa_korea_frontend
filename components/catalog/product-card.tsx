@@ -1,8 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import { MessageCircle, Car } from "lucide-react"
-import { Button } from "@/casa_korea/components/ui/button"
-import { Badge } from "@/casa_korea/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 
 interface Product {
   id: string
