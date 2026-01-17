@@ -1,12 +1,8 @@
 const brands = [
   { name: "Kia", logo: "KIA" },
   { name: "Hyundai", logo: "HYUNDAI" },
-  { name: "Chevrolet", logo: "CHEVROLET" },
-  { name: "Mazda", logo: "MAZDA" },
-  { name: "Toyota", logo: "TOYOTA" },
-  { name: "Nissan", logo: "NISSAN" },
   { name: "Renault", logo: "RENAULT" },
-  { name: "Ford", logo: "FORD" },
+  { name: "Chevrolet", logo: "CHEVROLET" },
 ]
 
 export function BrandsSection() {
