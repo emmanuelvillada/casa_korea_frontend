@@ -1,12 +1,8 @@
 const brands = [
   { name: "Kia", logo: "KIA" },
   { name: "Hyundai", logo: "HYUNDAI" },
-  { name: "Chevrolet", logo: "CHEVROLET" },
-  { name: "Mazda", logo: "MAZDA" },
-  { name: "Toyota", logo: "TOYOTA" },
-  { name: "Nissan", logo: "NISSAN" },
   { name: "Renault", logo: "RENAULT" },
-  { name: "Ford", logo: "FORD" },
+  { name: "Chevrolet", logo: "CHEVROLET" },
 ]
 
 export function BrandsSection() {
@@ -16,7 +12,7 @@ export function BrandsSection() {
         <div className="text-center mb-12 lg:mb-16">
           <span className="text-secondary font-semibold text-sm uppercase tracking-wider">Marcas Compatibles</span>
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2 mb-4">Repuestos compatibles por marca</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-2xl">
             Trabajamos con las principales marcas del mercado automotriz colombiano
           </p>
         </div>

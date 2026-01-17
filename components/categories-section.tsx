@@ -40,7 +40,7 @@ export function CategoriesSection() {
         <div className="text-center mb-12 lg:mb-16">
           <span className="text-secondary font-semibold text-sm uppercase tracking-wider">Nuestras Categorías</span>
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2 mb-4">Todo lo que tu vehículo necesita</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-2xl">
             Amplio inventario de repuestos organizados por categoría para facilitar tu búsqueda
           </p>
         </div>

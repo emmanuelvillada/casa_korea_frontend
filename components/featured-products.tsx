@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { MessageCircle } from "lucide-react"
+import Image from "next/image"
 
 const products = [
   {
@@ -35,7 +36,7 @@ export function FeaturedProducts() {
         <div className="text-center mb-12 lg:mb-16">
           <span className="text-secondary font-semibold text-sm uppercase tracking-wider">Productos Destacados</span>
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2 mb-4">Los más solicitados</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-2xl">
             Conoce algunos de nuestros productos más populares entre nuestros clientes
           </p>
         </div>
@@ -47,9 +48,11 @@ export function FeaturedProducts() {
               className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow group"
             >
               <div className="aspect-square bg-muted p-4 flex items-center justify-center overflow-hidden">
-                <img
+                <Image
                   src={product.image || "/placeholder.svg"}
                   alt={product.name}
+                  width={200}
+                  height={200}
                   className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                   crossOrigin="anonymous"
                 />
@@ -64,7 +67,7 @@ export function FeaturedProducts() {
                   className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
                 >
                   <a
-                    href="https://wa.me/573001234567"
+                    href="https://wa.me/573137192308"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2"

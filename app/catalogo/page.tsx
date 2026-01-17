@@ -1,7 +1,7 @@
-import { Header } from "@/casa_korea/components/header"
-import { Footer } from "@/casa_korea/components/footer"
-import { WhatsAppButton } from "@/casa_korea/components/whatsapp-button"
-import { CatalogContent } from "@/casa_korea/components/catalog/catalog-content"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
+import { WhatsAppButton } from "@/components/whatsapp-button"
+import { CatalogContent } from "@/components/catalog/catalog-content"
 
 export const metadata = {
   title: "Catálogo de Repuestos | Casa Korea",
