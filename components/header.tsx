@@ -4,6 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import logo from "@/public/logo.jpeg"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -21,10 +23,15 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">CK</span>
+            <div className=" bg-primary rounded-lg flex items-center justify-center">
+              <Image
+                src={logo}
+                alt="Logo de Casa Korea"
+                width={120}
+                height={120}
+                className="object-contain"
+              />
             </div>
-            <span className="text-xl font-bold text-foreground">Casa Korea</span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">

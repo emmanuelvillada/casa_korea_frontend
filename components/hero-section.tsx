@@ -9,7 +9,7 @@ export function HeroSection() {
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-card rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
       </div>
 
-      <div className="container mx-auto px-4 py-20 lg:py-32 relative z-10">
+      <div className="container mx-auto px-4 py-14 lg:py-20 relative z-10">
         <div className="max-w-3xl">
           <span className="inline-block px-4 py-2 bg-secondary/20 text-primary-foreground rounded-full text-sm font-medium mb-6">
             Más de 15 años de experiencia
@@ -52,7 +52,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+
     </section>
   )
 }

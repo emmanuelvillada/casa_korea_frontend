@@ -1,34 +1,36 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Geist_Mono } from "next/font/google"
+import { Roboto } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-const _inter = Inter({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+})
 
 export const metadata: Metadata = {
   title: "Casa Korea | Repuestos Automotrices en Medellín",
   description:
     "Repuestos automotrices especializados en Medellín. Calidad, garantía y experiencia en partes para Kia, Hyundai, Chevrolet, Mazda, Toyota y más.",
-  generator: "v0.app",
+  generator: "Next.js",
   keywords: ["repuestos", "automotrices", "Medellín", "Casa Korea", "Kia", "Hyundai", "Chevrolet"],
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
+        url: "../public/logo.jpeg",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/icon-dark-32x32.png",
+        url: "../public/logo.jpeg",
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/icon.svg",
+        url: "../public/logo.jpeg",
         type: "image/svg+xml",
       },
     ],
-    apple: "/apple-icon.png",
+    apple: "../public/logo.jpeg",
   },
 }
 
@@ -39,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`font-sans antialiased`}>
+      <body className={`${roboto.className} antialiased`}>
         {children}
         <Analytics />
       </body>
