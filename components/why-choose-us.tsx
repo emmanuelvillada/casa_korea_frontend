@@ -32,7 +32,7 @@ export function WhyChooseUs() {
           <h2 className="text-3xl lg:text-4xl font-bold text-primary-foreground mt-2 mb-4">
             Tu confianza es nuestra prioridad
           </h2>
-          <p className="text-primary-foreground/80 max-w-2xl mx-auto">
+          <p className="text-primary-foreground/80 max-w-2xl mx-auto text-2xl">
             Más de 15 años respaldando a los conductores de Medellín con los mejores repuestos
           </p>
         </div>

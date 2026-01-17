@@ -31,7 +31,7 @@ export function TestimonialsSection() {
         <div className="text-center mb-12 lg:mb-16">
           <span className="text-secondary font-semibold text-sm uppercase tracking-wider">Testimonios</span>
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2 mb-4">Lo que dicen nuestros clientes</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-2xl">
             La satisfacción de nuestros clientes es nuestro mayor orgullo
           </p>
         </div>
