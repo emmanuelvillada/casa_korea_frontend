@@ -48,7 +48,10 @@ export function Header() {
 
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="tel:+573137192308"
+              href="https://wa.me/573137192308"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="telefono"
               className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
             >
               <Phone className="w-4 h-4 hover:scale-110 transition-transform" />

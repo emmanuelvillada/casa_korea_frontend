@@ -45,6 +45,7 @@ export function FeaturedProducts() {
           {products.map((product) => (
             <div
               key={product.name}
+
               className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow group"
             >
               <div className="aspect-square bg-muted p-4 flex items-center justify-center overflow-hidden">
