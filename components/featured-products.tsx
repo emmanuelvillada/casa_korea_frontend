@@ -1,42 +1,26 @@
 import { Button } from "@/components/ui/button"
 import { MessageCircle } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
-
 import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
-const products = [
-  {
-    name: "Kit de Embrague Completo",
-    brand: "Valeo",
-    description: "Compatible con Kia Picanto, Rio y Hyundai i10",
-    image: "/car-clutch-kit-automotive-parts.jpg",
-  },
-  {
-    name: "Amortiguadores Delanteros",
-    brand: "Monroe",
-    description: "Para Chevrolet Spark y Sail",
-    image: "/car-shock-absorbers-automotive-parts.jpg",
-  },
-  {
-    name: "Pastillas de Freno Cerámicas",
-    brand: "Brembo",
-    description: "Alta durabilidad, bajo ruido. Múltiples referencias",
-    image: "/ceramic-brake-pads-automotive-parts.jpg",
-  },
-  {
-    name: "Alternador Remanufacturado",
-    brand: "Bosch",
-    description: "Garantía de 1 año. Toyota, Mazda, Nissan",
-    image: "/car-alternator-automotive-parts.jpg",
-  },
-]
-
+// Query corregido para repuestos
 const REPUESTOS_QUERY = `*[
-  _type == "post"
+  _type == "repuesto"
   && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt}`;
+] | order(_createdAt desc)[0...4]{
+  _id, 
+  nombre, 
+  slug,
+  descripcion,
+  precio,
+  "imagenPrincipal": imagenes[0],
+  marcasCompatibles,
+  categoria->{
+    nombre
+  }
+}`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -55,46 +39,70 @@ export async function FeaturedProducts() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {repuestos.map((product) => (
-            <div
-              key={product._id}
-
-              className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow group"
-            >
-              <div className="aspect-square bg-muted p-4 flex items-center justify-center overflow-hidden">
-                <Image
-                  src={product.image || "/placeholder.svg"}
-                  alt={product.name}
-                  width={200}
-                  height={200}
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                  crossOrigin="anonymous"
-                />
-              </div>
-              <div className="p-5">
-                <span className="text-xs font-semibold text-secondary uppercase tracking-wider">{product.brand}</span>
-                <h3 className="text-lg font-bold text-foreground mt-1 mb-2">{product.name}</h3>
-                <p className="text-muted-foreground text-sm mb-4">{product.description}</p>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
-                >
-                  <a
-                    href="https://wa.me/573137192308"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2"
+          {repuestos.length === 0 ? (
+            // Fallback mientras no tengas productos en Sanity
+            <p className="col-span-full text-center text-muted-foreground">
+              No hay productos disponibles. Agrega algunos desde el panel de Sanity.
+            </p>
+          ) : (
+            repuestos.map((repuesto: SanityDocument) => (
+              <div
+                key={repuesto._id}
+                className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow group"
+              >
+                <div className="aspect-square bg-muted p-4 flex items-center justify-center overflow-hidden">
+                  {repuesto.imagenPrincipal ? (
+                    <Image
+                      src={urlFor(repuesto.imagenPrincipal).width(400).height(400).url()}
+                      alt={repuesto.nombre}
+                      width={400}
+                      height={400}
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                      Sin imagen
+                    </div>
+                  )}
+                </div>
+                <div className="p-5">
+                  {repuesto.marcasCompatibles && repuesto.marcasCompatibles[0] && (
+                    <span className="text-xs font-semibold text-secondary uppercase tracking-wider">
+                      {repuesto.marcasCompatibles[0]}
+                    </span>
+                  )}
+                  <h3 className="text-lg font-bold text-foreground mt-1 mb-2">
+                    {repuesto.nombre}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                    {repuesto.descripcion || "Sin descripción"}
+                  </p>
+                  {repuesto.precio && (
+                    <p className="text-xl font-bold text-primary mb-3">
+                      ${repuesto.precio.toLocaleString('es-CO')}
+                    </p>
+                  )}
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
                   >
-                    <MessageCircle className="w-4 h-4" />
-                    Consultar
-                  </a>
-                </Button>
+                    <a
+                      href={`https://wa.me/573137192308?text=Hola, estoy interesado en: ${encodeURIComponent(repuesto.nombre)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      Consultar
+                    </a>
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
-    </section>
+    </section >
   )
 }
