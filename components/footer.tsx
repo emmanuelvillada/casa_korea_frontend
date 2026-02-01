@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Facebook, Instagram, MessageCircle } from "lucide-react"
 import Image from "next/image"
-import logo from "@/public/logo.jpeg"
+import logo from "@/public/logo.png"
 
 export function Footer() {
   const quickLinks = [
@@ -20,7 +20,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className=" bg-primary-foreground rounded-lg flex items-center justify-center">
+              <div className="bg-primary-foreground  flex items-center justify-center">
                 <Image
                   src={logo}
                   alt="Logo de Casa Korea"

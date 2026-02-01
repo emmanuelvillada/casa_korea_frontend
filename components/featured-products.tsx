@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { MessageCircle } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link";
+import { type SanityDocument } from "next-sanity";
+
+import { client } from "@/sanity/lib/client";
 
 const products = [
   {
@@ -29,7 +33,16 @@ const products = [
   },
 ]
 
-export function FeaturedProducts() {
+const REPUESTOS_QUERY = `*[
+  _type == "post"
+  && defined(slug.current)
+]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt}`;
+
+const options = { next: { revalidate: 30 } };
+
+export async function FeaturedProducts() {
+  const repuestos = await client.fetch<SanityDocument[]>(REPUESTOS_QUERY, {}, options);
+
   return (
     <section id="productos" className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4">
@@ -42,9 +55,9 @@ export function FeaturedProducts() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
+          {repuestos.map((product) => (
             <div
-              key={product.name}
+              key={product._id}
 
               className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow group"
             >

@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import logo from "@/public/logo.jpeg"
+import logo from "@/public/logo.png"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -23,7 +23,8 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link href="/" className="flex items-center gap-2">
-            <div className=" bg-primary rounded-lg flex items-center justify-center">
+            <div className="rounded-lg flex items-center justify-center hover:scale-105 transition-transform"
+              onClick={() => window.location.href = '/'}>
               <Image
                 src={logo}
                 alt="Logo de Casa Korea"
