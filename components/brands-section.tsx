@@ -22,6 +22,7 @@ export function BrandsSection() {
             <div
               key={brand.name}
               className="bg-card border border-border rounded-xl p-6 lg:p-8 flex items-center justify-center hover:border-primary hover:shadow-md transition-all duration-300 group"
+
             >
               <span className="text-lg lg:text-xl font-bold text-muted-foreground group-hover:text-primary transition-colors">
                 {brand.logo}

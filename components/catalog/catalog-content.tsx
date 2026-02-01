@@ -4,24 +4,58 @@ import { useState, useMemo } from "react"
 import { CatalogFilters } from "./catalog-filters"
 import { ProductCard } from "./product-card"
 import { CatalogHeader } from "./catalog-header"
-import { products, categories, brands } from "@/lib/catalog-data"
+import { SanityDocument } from "next-sanity"
 
-export function CatalogContent() {
+interface CatalogContentProps {
+  repuestos: SanityDocument[]
+  categorias: SanityDocument[]
+  marcas: string[]
+}
+
+export function CatalogContent({ repuestos, categorias, marcas }: CatalogContentProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
   const [selectedBrand, setSelectedBrand] = useState<string>("all")
   const [searchQuery, setSearchQuery] = useState("")
 
+  // Preparar categorías para el filtro
+  const categories = [
+    { id: "all", name: "Todas las categorías", count: repuestos.length },
+    ...categorias.map((cat) => ({
+      id: cat._id,
+      name: cat.nombre,
+      count: repuestos.filter((product) => product.categoria?._id === cat._id).length,
+    })),
+  ]
+
+  // Preparar marcas para el filtro
+  const brands = [
+    { id: "all", name: "Todas las marcas", count: marcas.length },
+    ...marcas.map((marca) => ({
+      id: marca,
+      name: marca,
+      count: repuestos.filter((product) => product.marcasCompatibles?.includes(marca)).length,
+    })),
+  ]
+
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      const matchesCategory = selectedCategory === "all" || product.category === selectedCategory
-      const matchesBrand = selectedBrand === "all" || product.brand === selectedBrand
+    return repuestos.filter((product) => {
+      const matchesCategory =
+        selectedCategory === "all" ||
+        product.categoria?._id === selectedCategory
+
+      const matchesBrand =
+        selectedBrand === "all" ||
+        product.marcasCompatibles?.includes(selectedBrand)
+
       const matchesSearch =
         searchQuery === "" ||
-        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.sku.toLowerCase().includes(searchQuery.toLowerCase())
+        product.nombre.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.sku?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.descripcion?.toLowerCase().includes(searchQuery.toLowerCase())
+
       return matchesCategory && matchesBrand && matchesSearch
     })
-  }, [selectedCategory, selectedBrand, searchQuery])
+  }, [repuestos, selectedCategory, selectedBrand, searchQuery])
 
   return (
     <section className="py-8 lg:py-12">
@@ -48,7 +82,7 @@ export function CatalogContent() {
             {filteredProducts.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
                 {filteredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                  <ProductCard key={product._id} product={product} />
                 ))}
               </div>
             ) : (
