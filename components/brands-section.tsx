@@ -1,8 +1,14 @@
+import Kia from "@/public/kia-logo.png"
+import Hyundai from "@/public/hyundai-logo.png"
+import Renault from "@/public/renault-logo.png"
+import Chevrolet from "@/public/chevrolet-logo.png"
+import Image from "next/image"
+
 const brands = [
-  { name: "Kia", logo: "KIA" },
-  { name: "Hyundai", logo: "HYUNDAI" },
-  { name: "Renault", logo: "RENAULT" },
-  { name: "Chevrolet", logo: "CHEVROLET" },
+  { name: "Kia", logo: "KIA", image: Kia, size: 80 },
+  { name: "Hyundai", logo: "HYUNDAI", image: Hyundai, size: 80 },
+  { name: "Renault", logo: "RENAULT", image: Renault, size: 60 }, // más pequeño
+  { name: "Chevrolet", logo: "CHEVROLET", image: Chevrolet, size: 80 },
 ]
 
 export function BrandsSection() {
@@ -21,12 +27,21 @@ export function BrandsSection() {
           {brands.map((brand) => (
             <div
               key={brand.name}
-              className="bg-card border border-border rounded-xl p-6 lg:p-8 flex items-center justify-center hover:border-primary hover:shadow-md transition-all duration-300 group"
+              className="bg-card border border-border rounded-xl p-6 lg:p-8 flex flex-col items-center justify-center hover:border-primary hover:shadow-md transition-all duration-300 group"
 
             >
-              <span className="text-lg lg:text-xl font-bold text-muted-foreground group-hover:text-primary transition-colors">
+              <span className="text-lg lg:text-xl font-bold text-muted-foreground group-hover:text-primary transition-colors p-4">
                 {brand.logo}
               </span>
+              <div className="ml-4 w-24 h-24 relative">
+                <Image
+                  src={brand.image}
+                  alt={brand.name}
+                  fill
+                  priority
+                  className="object-contain"
+                />
+              </div>
             </div>
           ))}
         </div>

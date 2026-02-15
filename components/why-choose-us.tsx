@@ -39,7 +39,7 @@ export function WhyChooseUs() {
             Tu confianza es nuestra prioridad
           </h2>
           <p className="text-primary-foreground/80 max-w-2xl mx-auto text-2xl">
-            Más de 15 años respaldando a los conductores de Medellín con los mejores repuestos
+            Más de 15 años respaldando a los conductores y brindando soluciones al sector automotriz de Medellín con los mejores repuestos
           </p>
         </div>
 
