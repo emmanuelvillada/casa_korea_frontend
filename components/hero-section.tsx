@@ -32,7 +32,7 @@ export function HeroSection() {
   )
 
   return (
-    <section className="relative bg-primary overflow-hidden">
+    <section className="relative bg-gradient-to-br from-primary via-primary to-primary/80 overflow-hidden">
       <div className="container mx-auto px-4 py-14 lg:py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Contenido de texto */}

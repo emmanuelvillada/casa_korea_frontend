@@ -6,7 +6,7 @@ export function LocationSection() {
     <section id="contacto" className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 lg:mb-16">
-          <span className="text-secondary font-semibold text-sm uppercase tracking-wider">Ubicación y Contacto</span>
+          <span className="text-secondary font-semibold text-lg uppercase tracking-wider">Ubicación y Contacto</span>
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2 mb-4">Visítanos en Medellín </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-2xl">
             Estamos ubicados en una zona de fácil acceso. <br />
