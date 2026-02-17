@@ -5,10 +5,10 @@ import Chevrolet from "@/public/chevrolet-logo.png"
 import Image from "next/image"
 
 const brands = [
-  { name: "Kia", logo: "KIA", image: Kia, size: 80 },
-  { name: "Hyundai", logo: "HYUNDAI", image: Hyundai, size: 80 },
-  { name: "Renault", logo: "RENAULT", image: Renault, size: 60 }, // más pequeño
-  { name: "Chevrolet", logo: "CHEVROLET", image: Chevrolet, size: 80 },
+  { name: "Kia", logo: "KIA", image: Kia, size: 180 },
+  { name: "Hyundai", logo: "HYUNDAI", image: Hyundai, size: 400 },
+  { name: "Renault", logo: "RENAULT", image: Renault, size: 200 }, // más pequeño
+  { name: "Chevrolet", logo: "CHEVROLET", image: Chevrolet, size: 200 },
 ]
 
 export function BrandsSection() {
@@ -30,18 +30,16 @@ export function BrandsSection() {
               className="bg-card border border-border rounded-xl p-6 lg:p-8 flex flex-col items-center justify-center hover:border-primary hover:shadow-md transition-all duration-300 group"
 
             >
-              <span className="text-lg lg:text-xl font-bold text-muted-foreground group-hover:text-primary transition-colors p-4">
-                {brand.logo}
-              </span>
-              <div className="ml-4 w-24 h-24 relative">
-                <Image
-                  src={brand.image}
-                  alt={brand.name}
-                  fill
-                  priority
-                  className="object-contain"
-                />
-              </div>
+
+              <Image
+                src={brand.image}
+                alt={brand.name}
+                width={brand.size}
+                height={brand.size}
+                priority
+                className="object-contain"
+              />
+
             </div>
           ))}
         </div>

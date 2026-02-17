@@ -32,7 +32,7 @@ export function WhyChooseUs() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 lg:mb-16">
-          <span className="text-secondary font-semibold text-sm uppercase tracking-wider">
+          <span className="text-secondary font-semibold text-lg uppercase tracking-wider">
             ¿Por qué elegirnos?
           </span>
           <h2 className="text-3xl lg:text-4xl font-bold text-primary-foreground mt-2 mb-4">
