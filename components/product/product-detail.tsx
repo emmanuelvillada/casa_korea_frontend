@@ -8,8 +8,11 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { productDetails } from "@/lib/product-details"
+import { type SanityDocument } from "next-sanity";
 
-interface Product {
+
+
+interface Product extends SanityDocument {
   id: string
   name: string
   sku: string

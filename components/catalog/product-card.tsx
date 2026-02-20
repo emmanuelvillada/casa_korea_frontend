@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { MessageCircle, Package } from "lucide-react"
 import { urlFor } from "@/sanity/lib/image"
 import { type SanityDocument } from "next-sanity";
+import Link from "next/link"
 
 interface ProductCardProps {
   product: SanityDocument
@@ -16,6 +17,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow group">
       <div className="aspect-square bg-muted p-4 flex items-center justify-center overflow-hidden relative">
+        <Link href={`/catalogo/${product.slug.current}`} className="absolute inset-0 z-10" />
         {product.imagenPrincipal ? (
           <Image
             src={urlFor(product.imagenPrincipal).width(400).height(400).url()}
