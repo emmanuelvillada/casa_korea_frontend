@@ -51,7 +51,7 @@ export async function FeaturedProducts() {
           ) : (
             repuestos.map((repuesto: SanityDocument) => (
               <Link
-                href={`/repuestos/${repuesto.slug.current}`}
+                href={`/catalogo/${repuesto.slug.current}`}
                 key={repuesto._id}
                 className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow group block"
               >

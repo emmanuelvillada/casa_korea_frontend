@@ -13,27 +13,35 @@ interface ProductPageProps {
 }
 
 interface Product extends SanityDocument {
-  id: string
-  name: string
+  _id: string
+  nombre: string
+  descripcion: string
+  precio: number
   sku: string
-  category: string
-  categoryName: string
-  brand: string
-  brandName: string
-  compatibility: string[]
-  image: string
-  inStock: boolean
+  estado: string
+  stock: number
+  destacado: boolean
+  aniosCompatibles: string
+  slug: string
+  categoria: string
+  imagenes: string[]
 }
 
 
 const productQuery = `
-  *[_type == 'product' && slug.current == $id][0] {
+  *[_type == 'repuesto' && slug.current == $id][0] {
     _id,
-    name,
-    description,
-    price,
+    nombre,
+    descripcion,
+    precio,
+    sku,
+    estado,
+    stock,
+    destacado,
+    aniosCompatibles,
     "slug": slug.current,
-    "imageUrl": image.asset->url
+    "categoria": categoria->nombre,
+    "imagenes": imagenes[].asset->url
   }
 `
 //To do: verificar por que la query no esta trayendo el producto, revisar el id que se esta pasando y el slug en sanity, revisar la estructura del producto en sanity y compararla con la interfaz Product. Agregar console.log para debuggear el producto traido por la query.
@@ -41,7 +49,6 @@ const productQuery = `
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
   const product: Product = await client.fetch<Product>(productQuery, { id: id });
-  console.log("Fetched product:", product);
   if (!product) {
     return notFound();
   }
