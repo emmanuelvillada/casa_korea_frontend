@@ -32,14 +32,14 @@ export function WhyChooseUs() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 lg:mb-16">
-          <span className="text-secondary font-semibold text-sm uppercase tracking-wider">
+          <span className="text-secondary font-semibold text-lg uppercase tracking-wider">
             ¿Por qué elegirnos?
           </span>
           <h2 className="text-3xl lg:text-4xl font-bold text-primary-foreground mt-2 mb-4">
             Tu confianza es nuestra prioridad
           </h2>
           <p className="text-primary-foreground/80 max-w-2xl mx-auto text-2xl">
-            Más de 15 años respaldando a los conductores de Medellín con los mejores repuestos
+            Más de 15 años respaldando a los conductores y brindando soluciones al sector automotriz de Medellín con los mejores repuestos
           </p>
         </div>
 

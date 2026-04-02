@@ -6,10 +6,11 @@ export function LocationSection() {
     <section id="contacto" className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 lg:mb-16">
-          <span className="text-secondary font-semibold text-sm uppercase tracking-wider">Ubicación y Contacto</span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2 mb-4">Visítanos en Medellín</h2>
+          <span className="text-secondary font-semibold text-lg uppercase tracking-wider">Ubicación y Contacto</span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2 mb-4">Visítanos en Medellín </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-2xl">
-            Estamos ubicados en una zona de fácil acceso. ¡Te esperamos!
+            Estamos ubicados en una zona de fácil acceso. <br />
+            ¡Te esperamos!
           </p>
         </div>
 
@@ -47,13 +48,13 @@ export function LocationSection() {
                     href="tel:+573001234567"
                     className="block text-muted-foreground hover:text-primary transition-colors"
                   >
-                    +57 300 123 4567
+                    +57 313 719 2308
                   </a>
                   <a
                     href="tel:+57042345678"
                     className="block text-muted-foreground hover:text-primary transition-colors"
                   >
-                    +57 (4) 234 5678
+                    +57 314 481 9262
                   </a>
                 </div>
               </div>
@@ -68,7 +69,8 @@ export function LocationSection() {
                 </div>
                 <div>
                   <p className="font-semibold text-foreground group-hover:text-primary transition-colors">Email</p>
-                  <p className="text-muted-foreground">ventas@casakorea.com.co</p>
+                  <p className="text-muted-foreground">ventas@importacionescasakorea.com</p>
+                  <p className="text-muted-foreground">compras@importacionescasakorea.com</p>
                 </div>
               </a>
 
@@ -79,9 +81,9 @@ export function LocationSection() {
                 </div>
                 <div>
                   <p className="font-semibold text-foreground">Horario</p>
-                  <p className="text-muted-foreground">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                  <p className="text-muted-foreground">Lunes a Viernes: 8:00 AM - 9:00 PM</p>
                   <p className="text-muted-foreground">Sábados: 8:00 AM - 2:00 PM</p>
-                  <p className="text-muted-foreground text-sm mt-1">Domingos: Cerrado</p>
+                  <p className="text-muted-foreground text-sm mt-1">Domingos y Festivos: 8:00 AM - 1:00 PM</p>
                 </div>
               </div>
             </div>

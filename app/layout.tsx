@@ -10,7 +10,7 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tu-dominio.com'), // Cambia por tu URL real
+  metadataBase: new URL('https://importacionescasakorea.com'), // Cambia por tu URL real
   title: {
     default: "Casa Korea | Repuestos Automotrices en Medellín",
     template: "%s | Casa Korea" // Para páginas individuales
@@ -31,7 +31,11 @@ export const metadata: Metadata = {
     "amortiguadores",
     "embragues",
     "alternadores",
-    "repuestos Colombia"
+    "repuestos Colombia",
+    "repuestos",
+    "repuestos Medellín",
+    "repuestos renault",
+    "repuestos chevrolet",
   ],
   authors: [{ name: "Casa Korea" }],
   creator: "Casa Korea",
@@ -123,15 +127,15 @@ export default function RootLayout({
               "telephone": "+573137192308",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Tu dirección aquí", // Agrega tu dirección
+                "streetAddress": "Bomba gallo, Calle. 65 #52A-34, La Candelaria",
                 "addressLocality": "Medellín",
                 "addressRegion": "Antioquia",
-                "postalCode": "050001", // Tu código postal
+                "postalCode": "050001",
                 "addressCountry": "CO"
               },
               "geo": {
                 "@type": "GeoCoordinates",
-                "latitude": "6.2442", // Coordenadas reales de tu negocio
+                "latitude": "6.2442",
                 "longitude": "-75.5812"
               },
               "openingHoursSpecification": [
@@ -151,9 +155,9 @@ export default function RootLayout({
               "priceRange": "$$",
               "image": "https://importacionescasakorea.com/og-image.jpg",
               "sameAs": [
-                "https://www.facebook.com/casakorea", // Tus redes sociales
-                "https://www.instagram.com/casakorea",
-                // "https://twitter.com/casakorea"
+                "https://www.facebook.com/importacionescasakorea",
+                "https://www.instagram.com/importacionescasakorea",
+
               ]
             })
           }}

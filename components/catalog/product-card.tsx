@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { MessageCircle, Package } from "lucide-react"
 import { urlFor } from "@/sanity/lib/image"
 import { type SanityDocument } from "next-sanity";
+import Link from "next/link"
 
 interface ProductCardProps {
   product: SanityDocument
@@ -14,7 +15,8 @@ export function ProductCard({ product }: ProductCardProps) {
   const whatsappUrl = `https://wa.me/573137192308?text=${encodeURIComponent(whatsappMessage)}`
 
   return (
-    <div className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow group">
+    <div className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow group relative">
+      <Link href={`/catalogo/${product.slug.current}`} className="absolute inset-0 z-10" aria-label={`Ver detalle de ${product.nombre}`} />
       <div className="aspect-square bg-muted p-4 flex items-center justify-center overflow-hidden relative">
         {product.imagenPrincipal ? (
           <Image
@@ -39,6 +41,24 @@ export function ProductCard({ product }: ProductCardProps) {
         {product.stock === 0 && (
           <Badge variant="destructive" className="absolute top-2 left-2">
             Sin stock
+          </Badge>
+        )}
+
+        {product.estado && product.stock !== 0 && (
+          <Badge
+            className={`absolute top-2 left-2 text-white ${
+              product.estado === "nuevo"
+                ? "bg-green-600"
+                : product.estado === "remanufacturado"
+                ? "bg-blue-600"
+                : "bg-yellow-600"
+            }`}
+          >
+            {product.estado === "nuevo"
+              ? "Nuevo"
+              : product.estado === "remanufacturado"
+              ? "Remanufacturado"
+              : "Usado"}
           </Badge>
         )}
       </div>
@@ -106,7 +126,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
         <Button
           asChild
-          className="w-full"
+          className="w-full relative z-20"
           disabled={product.stock === 0}
         >
           <a

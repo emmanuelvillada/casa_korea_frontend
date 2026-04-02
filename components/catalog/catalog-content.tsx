@@ -1,10 +1,13 @@
 "use client"
 
 import { useState, useMemo } from "react"
+import { X } from "lucide-react"
 import { CatalogFilters } from "./catalog-filters"
 import { ProductCard } from "./product-card"
 import { CatalogHeader } from "./catalog-header"
 import { SanityDocument } from "next-sanity"
+
+type SortOption = "nombre_asc" | "nombre_desc" | "precio_asc" | "precio_desc" | "destacado"
 
 interface CatalogContentProps {
   repuestos: SanityDocument[]
@@ -16,6 +19,7 @@ export function CatalogContent({ repuestos, categorias, marcas }: CatalogContent
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
   const [selectedBrand, setSelectedBrand] = useState<string>("all")
   const [searchQuery, setSearchQuery] = useState("")
+  const [selectedSort, setSelectedSort] = useState<SortOption>("destacado")
 
   // Preparar categorías para el filtro
   const categories = [
@@ -38,24 +42,55 @@ export function CatalogContent({ repuestos, categorias, marcas }: CatalogContent
   ]
 
   const filteredProducts = useMemo(() => {
-    return repuestos.filter((product) => {
+    const filtered = repuestos.filter((product) => {
       const matchesCategory =
-        selectedCategory === "all" ||
-        product.categoria?._id === selectedCategory
-
+        selectedCategory === "all" || product.categoria?._id === selectedCategory
       const matchesBrand =
-        selectedBrand === "all" ||
-        product.marcasCompatibles?.includes(selectedBrand)
-
+        selectedBrand === "all" || product.marcasCompatibles?.includes(selectedBrand)
       const matchesSearch =
         searchQuery === "" ||
         product.nombre.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.sku?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.descripcion?.toLowerCase().includes(searchQuery.toLowerCase())
-
       return matchesCategory && matchesBrand && matchesSearch
     })
-  }, [repuestos, selectedCategory, selectedBrand, searchQuery])
+
+    return [...filtered].sort((a, b) => {
+      switch (selectedSort) {
+        case "nombre_asc":
+          return a.nombre.localeCompare(b.nombre, "es")
+        case "nombre_desc":
+          return b.nombre.localeCompare(a.nombre, "es")
+        case "precio_asc":
+          return (a.precio ?? 0) - (b.precio ?? 0)
+        case "precio_desc":
+          return (b.precio ?? 0) - (a.precio ?? 0)
+        case "destacado":
+          return (b.destacado ? 1 : 0) - (a.destacado ? 1 : 0)
+        default:
+          return 0
+      }
+    })
+  }, [repuestos, selectedCategory, selectedBrand, searchQuery, selectedSort])
+
+  // Chips de filtros activos
+  const activeFilters = [
+    ...(selectedCategory !== "all"
+      ? [{ key: "category", label: categories.find((c) => c.id === selectedCategory)?.name ?? selectedCategory, onRemove: () => setSelectedCategory("all") }]
+      : []),
+    ...(selectedBrand !== "all"
+      ? [{ key: "brand", label: selectedBrand, onRemove: () => setSelectedBrand("all") }]
+      : []),
+    ...(searchQuery !== ""
+      ? [{ key: "search", label: `"${searchQuery}"`, onRemove: () => setSearchQuery("") }]
+      : []),
+  ]
+
+  const clearAll = () => {
+    setSelectedCategory("all")
+    setSelectedBrand("all")
+    setSearchQuery("")
+  }
 
   return (
     <section className="py-8 lg:py-12">
@@ -64,7 +99,36 @@ export function CatalogContent({ repuestos, categorias, marcas }: CatalogContent
           totalProducts={filteredProducts.length}
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
+          selectedSort={selectedSort}
+          onSortChange={setSelectedSort}
         />
+
+        {/* Chips de filtros activos */}
+        {activeFilters.length > 0 && (
+          <div className="flex flex-wrap items-center gap-2 mb-6">
+            <span className="text-sm text-muted-foreground">Filtrando por:</span>
+            {activeFilters.map((filter) => (
+              <button
+                type="button"
+                key={filter.key}
+                onClick={filter.onRemove}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+              >
+                {filter.label}
+                <X className="w-3.5 h-3.5" />
+              </button>
+            ))}
+            {activeFilters.length > 1 && (
+              <button
+                type="button"
+                onClick={clearAll}
+                className="text-sm text-muted-foreground hover:text-foreground underline transition-colors"
+              >
+                Limpiar todo
+              </button>
+            )}
+          </div>
+        )}
 
         <div className="flex flex-col lg:flex-row gap-8">
           <aside className="w-full lg:w-64 shrink-0">
@@ -91,11 +155,8 @@ export function CatalogContent({ repuestos, categorias, marcas }: CatalogContent
                   No se encontraron productos con los filtros seleccionados.
                 </p>
                 <button
-                  onClick={() => {
-                    setSelectedCategory("all")
-                    setSelectedBrand("all")
-                    setSearchQuery("")
-                  }}
+                  type="button"
+                  onClick={clearAll}
                   className="mt-4 text-primary hover:underline font-medium"
                 >
                   Limpiar filtros
