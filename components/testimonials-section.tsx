@@ -16,7 +16,7 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: "Andrés Restrepo",
+    name: "Juan Carlos Villada",
     role: "Conductor de taxi",
     content:
       "Como taxista, necesito repuestos de confianza. En Casa Korea siempre me atienden bien y tienen garantía en todo. Los recomiendo 100%.",

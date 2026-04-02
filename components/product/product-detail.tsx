@@ -3,11 +3,12 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { MessageCircle, Car, ChevronLeft, Package, Shield, Truck, Check } from "lucide-react"
+import { MessageCircle, Car, ChevronLeft, Package, Shield, Truck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { type SanityDocument } from "next-sanity"
+import { urlFor } from "@/sanity/lib/image"
 
 interface Product extends SanityDocument {
   _id: string
@@ -19,9 +20,11 @@ interface Product extends SanityDocument {
   stock: number
   destacado: boolean
   aniosCompatibles: string | number
+  marcasCompatibles: string[]
+  modelosCompatibles: string[]
   slug: string
   categoria: string
-  imagenes: string[]
+  imagenes: SanityDocument[]
 }
 
 interface ProductDetailProps {
@@ -30,8 +33,7 @@ interface ProductDetailProps {
 
 export function ProductDetail({ product }: ProductDetailProps) {
   const [selectedImage, setSelectedImage] = useState(0)
-  const gallery =
-    (product.imagenes ?? []).length > 0 ? product.imagenes : ["/placeholder.svg"]
+  const imagenes = product.imagenes ?? []
 
   const whatsappMessage = encodeURIComponent(
     `Hola, me interesa el repuesto: ${product.nombre} (SKU: ${product.sku}). ¿Está disponible y cuál es el precio?`,
@@ -63,12 +65,16 @@ export function ProductDetail({ product }: ProductDetailProps) {
         <div className="space-y-4">
           {/* Main Image */}
           <div className="relative aspect-square bg-muted rounded-lg overflow-hidden border border-border">
-            <Image
-              src={gallery[selectedImage] || "/placeholder.svg"}
-              alt={product.nombre}
-              fill
-              className="object-cover"
-            />
+            {imagenes.length > 0 ? (
+              <Image
+                src={urlFor(imagenes[selectedImage]).width(800).height(800).url()}
+                alt={product.nombre}
+                fill
+                className="object-cover"
+              />
+            ) : (
+              <Image src="/placeholder.svg" alt={product.nombre} fill className="object-cover" />
+            )}
             {product.stock > 0 ? (
               <Badge className="absolute top-4 left-4 bg-green-600 hover:bg-green-600 text-white">
                 En stock
@@ -81,9 +87,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </div>
 
           {/* Thumbnail Gallery */}
-          {gallery.length > 1 && (
+          {imagenes.length > 1 && (
             <div className="flex gap-3 overflow-x-auto pb-2">
-              {gallery.map((img, index) => (
+              {imagenes.map((img: SanityDocument, index: number) => (
                 <button
                   type="button"
                   title={`Vista ${index + 1}`}
@@ -95,7 +101,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                     }`}
                 >
                   <Image
-                    src={img || "/placeholder.svg"}
+                    src={urlFor(img).width(160).height(160).url()}
                     alt={`${product.nombre} - Vista ${index + 1}`}
                     fill
                     className="object-cover"
