@@ -5,8 +5,8 @@ import { SanityDocument } from 'next-sanity'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://importacionescasakorea.com'
 
-    // Obtener todos los repuestos de Sanity
-    const repuestos = await client.fetch(`*[_type == "repuesto"]{slug, _updatedAt}`)
+    // Filtra solo los que tienen slug
+    const repuestos = await client.fetch(`*[_type == "repuesto" && defined(slug.current)]{slug, _updatedAt}`)
 
     const repuestosUrls = repuestos.map((repuesto: SanityDocument) => ({
         url: `${baseUrl}/catalogo/${repuesto.slug.current}`,
