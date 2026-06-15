@@ -3,9 +3,10 @@ import Hyundai from "@/public/hyundai-logo.png"
 import Renault from "@/public/renault-logo.png"
 import Chevrolet from "@/public/chevrolet-logo.png"
 import Image from "next/image"
+import Link from "next/link"
 
 const brands = [
-  { name: "Kia", logo: "KIA", image: Kia, size: 180 },
+  { name: "Kia", logo: "KIA", image: Kia, size: 180, },
   { name: "Hyundai", logo: "HYUNDAI", image: Hyundai, size: 400 },
   { name: "Renault", logo: "RENAULT", image: Renault, size: 200 }, // más pequeño
   { name: "Chevrolet", logo: "CHEVROLET", image: Chevrolet, size: 200 },
@@ -25,12 +26,11 @@ export function BrandsSection() {
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 lg:gap-6">
           {brands.map((brand) => (
-            <div
+            <Link
               key={brand.name}
-              className="bg-card border border-border rounded-xl p-6 lg:p-8 flex flex-col items-center justify-center hover:border-primary hover:shadow-md transition-all duration-300 group"
-
+              href={`/catalogo?marca=${encodeURIComponent(brand.name)}`}
+              className="bg-card border border-border rounded-xl p-6 lg:p-8 flex flex-col items-center justify-center hover:border-primary hover:shadow-md transition-all duration-300 group cursor-pointer"
             >
-
               <Image
                 src={brand.image}
                 alt={brand.name}
@@ -39,8 +39,7 @@ export function BrandsSection() {
                 priority
                 className="object-contain"
               />
-
-            </div>
+            </Link>
           ))}
         </div>
       </div>

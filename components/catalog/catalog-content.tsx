@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
+import { useSearchParams } from "next/navigation"
 import { X } from "lucide-react"
 import { CatalogFilters } from "./catalog-filters"
 import { ProductCard } from "./product-card"
@@ -16,8 +17,11 @@ interface CatalogContentProps {
 }
 
 export function CatalogContent({ repuestos, categorias, marcas }: CatalogContentProps) {
+  const searchParams = useSearchParams()
+  const initialBrand = searchParams.get("marca") ?? "all"
+
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
-  const [selectedBrand, setSelectedBrand] = useState<string>("all")
+  const [selectedBrand, setSelectedBrand] = useState<string>(initialBrand)
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedSort, setSelectedSort] = useState<SortOption>("destacado")
 

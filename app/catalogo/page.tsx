@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
@@ -51,7 +52,9 @@ export default async function CatalogoPage() {
   return (
     <main className="min-h-screen">
       <Header />
-      <CatalogContent repuestos={repuestos} categorias={categorias} marcas={marcasUnicas} />
+      <Suspense>
+        <CatalogContent repuestos={repuestos} categorias={categorias} marcas={marcasUnicas} />
+      </Suspense>
       <Footer />
       <WhatsAppButton />
     </main>
