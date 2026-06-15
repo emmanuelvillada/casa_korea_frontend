@@ -39,6 +39,13 @@ export default defineType({
             validation: Rule => Rule.required().positive()
         }),
         defineField({
+            name: 'precioDescuento',
+            title: 'Precio con Descuento',
+            type: 'number',
+            validation: Rule => Rule.required().positive()
+        }),
+
+        defineField({
             name: 'imagenes',
             title: 'Imágenes',
             type: 'array',
